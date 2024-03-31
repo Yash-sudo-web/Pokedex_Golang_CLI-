@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/Yash-sudo-web/pokedex/pokeapi"
 )
 
 type config struct {
@@ -13,7 +15,7 @@ type config struct {
 	prevLocationsURL *string
 }
 
-func startRepl(*config) {
+func startRepl(cfg *config) {
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
 		print("Pokédex>> ")
@@ -27,7 +29,7 @@ func startRepl(*config) {
 		commandName := words[0]
 		command, ok := getCommands()[commandName]
 		if ok {
-			err := command.callback()
+			err := command.callback(cfg)
 			if err != nil {
 				fmt.Println(err)
 			}

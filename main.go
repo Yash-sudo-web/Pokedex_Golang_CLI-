@@ -2,6 +2,8 @@ package main
 
 import (
 	"time"
+
+	"github.com/Yash-sudo-web/pokedex/pokeapi"
 )
 
 func main() {

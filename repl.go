@@ -7,7 +7,13 @@ import (
 	"strings"
 )
 
-func startRepl() {
+type config struct {
+	pokeapiClient    pokeapi.Client
+	nextLocationsURL *string
+	prevLocationsURL *string
+}
+
+func startRepl(*config) {
 	scanner := bufio.NewScanner(os.Stdin)
 	for {
 		print("Pokédex>> ")
@@ -43,7 +49,7 @@ func textClean(str string) []string {
 type commands struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*config) error
 }
 
 func getCommands() map[string]commands {

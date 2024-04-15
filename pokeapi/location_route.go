@@ -7,7 +7,7 @@ import (
 )
 
 func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
-	url := baseURL + "/location-area"
+	url := baseURL + "/location-area?offset=0&limit=20"
 	if pageURL != nil {
 		url = *pageURL
 	}
@@ -40,6 +40,43 @@ func (c *Client) ListLocations(pageURL *string) (RespShallowLocations, error) {
 	err = json.Unmarshal(data, &locationResp)
 	if err != nil {
 		return RespShallowLocations{}, err
+	}
+	println("Cache miss")
+	c.cache.Add(url, data)
+	return locationResp, nil
+}
+
+func (c *Client) ListPokemon(location string) (LocationArea, error) {
+	url := baseURL + "/location-area/" + location
+
+	if val, ok := c.cache.Get(url); ok {
+		locationResp := LocationArea{}
+		err := json.Unmarshal(val, &locationResp)
+		if err != nil {
+			return LocationArea{}, err
+		}
+		println("Cache hit")
+		return locationResp, nil
+	}
+
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return LocationArea{}, err
+	}
+	resp, err := c.httpClient.Do(req)
+	if err != nil {
+		return LocationArea{}, err
+	}
+	defer resp.Body.Close()
+
+	data, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return LocationArea{}, err
+	}
+	locationResp := LocationArea{}
+	err = json.Unmarshal(data, &locationResp)
+	if err != nil {
+		return LocationArea{}, err
 	}
 	println("Cache miss")
 	c.cache.Add(url, data)

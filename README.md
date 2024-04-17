@@ -5,12 +5,12 @@ The Pokédex Tool is a command-line application that allows users to explore var
 
 - Command-line Interface (CLI): Users interact with the tool via a command-line interface, where they can input commands to perform various actions.
 - Commands: The tool supports several commands, including:
-    help: Displays a list of available commands and their descriptions.
-    exit: Exits the Pokémon Exploration Tool.
-    map: Shows the next 20 regions available for exploration.
-    mapb: Shows the previous 20 regions.
-    explore {location}: Allows users to explore a specific location by providing its name.
-    inspect {pokemon}: Allows users to inspect a specific pokémon by providing its name.
+    - help: Displays a list of available commands and their descriptions.
+    - exit: Exits the Pokémon Exploration Tool.
+    - map: Shows the next 20 regions available for exploration.
+    - mapb: Shows the previous 20 regions.
+    - explore {location}: Allows users to explore a specific location by providing its name.
+    - inspect {pokemon}: Allows users to inspect a specific pokémon by providing its name.
 - Caching Mechanism: To optimize API calls and reduce response time, the tool implements a caching mechanism. Cached data is stored locally to avoid redundant requests to the Pokémon API.
 - Testing: The tool includes unit tests to ensure the correctness and reliability of its functionalities. Tests cover features such as text cleaning, cache management, and API interactions.
 

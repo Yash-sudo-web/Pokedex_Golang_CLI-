@@ -12,7 +12,7 @@ func commandExplore(cfg *config, args ...string) error {
 	name := args[0]
 	location, err := cfg.pokeapiClient.ListPokemon(name)
 	if err != nil {
-		return err
+		return errors.New("Location does not exist")
 	}
 	fmt.Println("Exporing " + location.Name)
 	fmt.Println("Pokemon Found:")

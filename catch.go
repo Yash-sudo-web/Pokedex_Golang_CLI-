@@ -8,12 +8,12 @@ import (
 
 func commandCatch(cfg *config, args ...string) error {
 	if len(args) == 0 {
-		return errors.New("Pokemon name not provided")
+		return errors.New("pokemon name not provided")
 	}
 	name := args[0]
 	pokemon, err := cfg.pokeapiClient.CatchPokemon(name)
 	if err != nil {
-		return errors.New("Pokemon does not exist")
+		return errors.New("pokemon does not exist")
 	}
 
 	res := rand.Intn(pokemon.BaseExperience)

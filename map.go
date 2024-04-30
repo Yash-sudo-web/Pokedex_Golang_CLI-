@@ -20,7 +20,7 @@ func commandMap(cfg *config, args ...string) error {
 
 func commandMapb(cfg *config, args ...string) error {
 	if cfg.prevLocationsURL == nil {
-		return errors.New("No previous locations")
+		return errors.New("no previous locations")
 	}
 	locationsResp, err := cfg.pokeapiClient.ListLocations(cfg.prevLocationsURL)
 	if err != nil {

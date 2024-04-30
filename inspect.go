@@ -7,14 +7,14 @@ import (
 
 func commandInspect(cfg *config, args ...string) error {
 	if len(args) != 1 {
-		return errors.New("please provide a pokémon name")
+		return errors.New("Please provide a Pokémon name")
 	}
 
 	name := args[0]
 	pokemon, err := cfg.caughtPokemon[name]
 
 	if !err {
-		return errors.New("pokémon not caught yet")
+		return errors.New("Pokémon not caught yet!")
 	}
 
 	fmt.Println("Name:", pokemon.Name)

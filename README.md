@@ -19,7 +19,7 @@ The Pokédex Tool is a command-line application that allows users to explore var
  - It utilizes the pokeapi package to interact with the Pokémon API and fetch data about locations and Pokémon encounters.
  - A caching package is used to store and manage cached responses from the API, improving performance.
  - The command-line interface is powered by a set of commands defined within the main package, enabling users to navigate and explore Pokémon regions efficiently.
- - 
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
